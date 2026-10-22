@@ -1,30 +1,25 @@
 <?php
 
 function diagonalDifference($arr) {
-    $n = count($arr);
-    $primaryDiagonal = 0;
-    $secondaryDiagonal = 0;
-    
+    $left = 0;
+    $right = 0;
+    $n = 0;
+
+    foreach ($arr as $row) {
+        $n++;
+    }
+
     for ($i = 0; $i < $n; $i++) {
-        $primaryDiagonal += $arr[$i][$i];
-        $secondaryDiagonal += $arr[$i][$n - 1 - $i];
+        $left = $left + $arr[$i][$i];
+        $right = $right + $arr[$i][$n - 1 - $i];
     }
-    
-    return abs($primaryDiagonal - $secondaryDiagonal);
-}
 
+    $difference = $left - $right;
 
-$rows = 5; // change this for more/less rows
-
-for ($i = 1; $i <= $rows; $i++) {
-    // print leading spaces
-    for ($s = 1; $s <= $rows - $i; $s++) {
-        echo " ";
+    if ($difference < 0) {
+        $difference = $difference * -1;
     }
-    // print numbers
-    for ($n = 1; $n <= $i; $n++) {
-        echo $n . " ";
-    }
-    echo "\n";
+
+    return $difference;
 }
 ?>
